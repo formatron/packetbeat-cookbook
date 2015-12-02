@@ -1,6 +1,6 @@
 version = node['formatron_packetbeat']['version']
 
-hostname = node['formatron_packetbeat']['logstash']['hostname']
+host = node['formatron_packetbeat']['logstash']['host']
 port = node['formatron_packetbeat']['logstash']['port']
 
 include_recipe 'formatron_beats::default'
@@ -12,7 +12,7 @@ end
 
 template '/etc/packetbeat/packetbeat.yml' do
   variables(
-    hostname: hostname,
+    host: host,
     port: port
   )
   notifies :restart, 'service[packetbeat]', :delayed
