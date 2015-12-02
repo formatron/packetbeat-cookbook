@@ -10,13 +10,13 @@ package 'packetbeat' do
   version version
 end
 
-#template '/etc/packetbeat/packetbeat.yml' do
-  #variables(
-    #hostname: hostname,
-    ##port: port
-  #)
-  #notifies :restart, 'service[topbeat]', :delayed
-#end
+template '/etc/packetbeat/packetbeat.yml' do
+  variables(
+    hostname: hostname,
+    port: port
+  )
+  notifies :restart, 'service[packetbeat]', :delayed
+end
 
 service 'packetbeat' do
   supports status: true, restart: true, reload: false
